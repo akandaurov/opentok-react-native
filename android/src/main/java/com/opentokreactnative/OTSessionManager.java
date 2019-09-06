@@ -157,7 +157,7 @@ public class OTSessionManager extends ReactContextBaseJavaModule
                     .frameRate(Publisher.CameraCaptureFrameRate.valueOf(frameRate))
                     .build();
             if (cameraPosition.equals("back")) {
-                mPublisher.cycleCamera();
+                mPublisher.setCameraId(0);
             }
         }
         mPublisher.setPublisherListener(this);
@@ -303,7 +303,7 @@ public class OTSessionManager extends ReactContextBaseJavaModule
         ConcurrentHashMap<String, Publisher> mPublishers = sharedState.getPublishers();
         Publisher mPublisher = mPublishers.get(publisherId);
         if (mPublisher != null) {
-            mPublisher.cycleCamera();
+            mPublisher.setCameraId(cameraPosition.equals("back") ? 0 : 1);
         }
     }
 
